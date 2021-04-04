@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:payani/screens/hotel_description/description_screen.dart';
+import 'package:payani/screens/hotel_rooms/hotel_rooms_screen.dart';
 
 import '../../../size_config.dart';
 import 'section_title.dart';
@@ -19,7 +19,7 @@ class SpecialOffers extends StatelessWidget {
           child: SectionTitle(
             title: "Popular Hotels",
             press: () {
-              Navigator.pushNamed(context, DestinationScreen.routeName);
+              Navigator.pushNamed(context, HotelRoomsScreen.routeName);
             },
           ),
         ),
@@ -33,7 +33,7 @@ class SpecialOffers extends StatelessWidget {
                 category: "Five Star hotel",
                 numOfBrands: 18,
                 press: () {
-                  Navigator.pushNamed(context, DestinationScreen.routeName);
+                  Navigator.pushNamed(context, HotelRoomsScreen.routeName);
                 },
               ),
               SpecialOfferCard(
@@ -41,7 +41,7 @@ class SpecialOffers extends StatelessWidget {
                 category: "Three star hotel",
                 numOfBrands: 24,
                 press: () {
-                  Navigator.pushNamed(context, DestinationScreen.routeName);
+                  Navigator.pushNamed(context, HotelRoomsScreen.routeName);
                 },
               ),
               SizedBox(width: getProportionateScreenWidth(20)),

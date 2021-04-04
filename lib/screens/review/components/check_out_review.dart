@@ -46,7 +46,7 @@ class CheckoutReviaw extends StatelessWidget {
                 SizedBox(
                   width: getProportionateScreenWidth(300),
                   child: DefaultButton(
-                    text: "View Review",
+                    text: "Submit",
                     press: () {},
                   ),
                 ),

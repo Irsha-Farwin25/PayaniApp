@@ -11,12 +11,13 @@ class Body extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
+
             SizedBox(height: getProportionateScreenHeight(15)),
             Rating(),
             SizedBox(height: getProportionateScreenWidth(15)),
-            TextBox(),
-            SizedBox(height: getProportionateScreenWidth(15)),
-            CheckoutReviaw(),
+            //TextBox(),
+            //SizedBox(height: getProportionateScreenWidth(15)),
+            //CheckoutReviaw(),
             // SizedBox(height: getProportionateScreenWidth(15)),
           ],
         ),
