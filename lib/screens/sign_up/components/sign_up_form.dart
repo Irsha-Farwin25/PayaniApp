@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:payani/components/custom_surfix_icon.dart';
 import 'package:payani/components/default_button.dart';
 import 'package:payani/components/form_error.dart';
 import 'package:payani/screens/complete_profile/complete_profile_screen.dart';
-
+import 'package:http/http.dart' as http;
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -13,6 +15,43 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
+//web services for signup page
+  TextEditingController ema =TextEditingController();
+  TextEditingController pas =TextEditingController();
+
+  Future register() async{
+    var url="http://payani.namsiu.org/customer/register_user";
+    var response = await http.post(Uri.parse(url),body:{
+      "email" : ema.text,
+      "password": pas.text,
+    });
+
+    var data = json.decode(response.body);
+    if(data=="Error"){
+       Fluttertoast.showToast(
+        msg: "Registration Successful",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green[700],
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+    }else{
+      Fluttertoast.showToast(
+        msg: "Already exist",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+
+    }
+  }
+
+//end of webservices
   final _formKey = GlobalKey<FormState>();
   String email;
   String password;
@@ -50,6 +89,8 @@ class _SignUpFormState extends State<SignUpForm> {
           DefaultButton(
             text: "Continue",
             press: () {
+              //data will be checked
+              register();
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
@@ -84,6 +125,7 @@ class _SignUpFormState extends State<SignUpForm> {
         }
         return null;
       },
+      controller: pas,
       decoration: InputDecoration(
         labelText: "Confirm Password",
         hintText: "Re-enter your password",
@@ -117,6 +159,7 @@ class _SignUpFormState extends State<SignUpForm> {
         }
         return null;
       },
+       controller: pas,
       decoration: InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
@@ -150,6 +193,7 @@ class _SignUpFormState extends State<SignUpForm> {
         }
         return null;
       },
+      controller: ema,
       decoration: InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",

@@ -34,6 +34,8 @@ dependencies:
   flutter_rating_bar: ^3.2.0+1
   sliding_up_panel: ^1.0.2
   font_awesome_flutter: ^8.5.0
+  http: ^0.13.1
+  fluttertoast: ^8.0.3
 flutter_rating_bar: ^2.0.0+2  
 dev_dependencies:
   flutter_test:

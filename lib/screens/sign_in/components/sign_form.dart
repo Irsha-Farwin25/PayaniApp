@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:payani/components/custom_surfix_icon.dart';
 import 'package:payani/components/form_error.dart';
 import 'package:payani/screens/forgot_password/forgot_password_screen.dart';
 import 'package:payani/screens/login_success/login_success_screen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -14,6 +17,42 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+
+  TextEditingController ema =TextEditingController();
+  TextEditingController pas =TextEditingController();
+
+  Future login()async{
+    var url="http://payani.namsiu.org/customer/login_user";
+    var response = await http.post(Uri.parse(url),body:{
+      "email" : ema.text,
+      "password": pas.text,
+    });
+
+    var data = json.decode(response.body);
+    if(data=="Success"){
+        Fluttertoast.showToast(
+        msg: "Login Successful",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green[700],
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+    // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+    }else{
+      Fluttertoast.showToast(
+        msg: "Username & Password Incorrect!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+    }
+  }
+
   final _formKey = GlobalKey<FormState>();
   String email;
   String password;
@@ -75,7 +114,10 @@ class _SignFormState extends State<SignForm> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
+                login(); 
+                
                 Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+              
               }
             },
           ),
@@ -106,6 +148,7 @@ class _SignFormState extends State<SignForm> {
         }
         return null;
       },
+      controller: pas,
       decoration: InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
@@ -139,6 +182,7 @@ class _SignFormState extends State<SignForm> {
         }
         return null;
       },
+      controller:ema,
       decoration: InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",

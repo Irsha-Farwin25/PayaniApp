@@ -9,10 +9,22 @@ import '../../../size_config.dart';
 
 class Body extends StatefulWidget {
   @override
-  _SignFormState createState() => _SignFormState();
+  _ReservationFormState createState() => _ReservationFormState();
 }
 
-class _SignFormState extends State<Body> {
+class _ReservationFormState extends State<Body> {
+
+  TextEditingController ema =TextEditingController();
+  TextEditingController fna =TextEditingController();
+  TextEditingController phn =TextEditingController();
+  TextEditingController addg =TextEditingController();
+  TextEditingController cki =TextEditingController();
+  TextEditingController cko =TextEditingController();
+
+
+
+  
+  
   final _formKey = GlobalKey<FormState>();
   String email;
   String firstName;

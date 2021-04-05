@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:payani/screens/home/components/categories.dart';
 
 class HotelRoomsScreen extends StatefulWidget {
   
