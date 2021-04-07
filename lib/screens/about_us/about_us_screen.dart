@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-class InviteFriendsScreen extends StatelessWidget {
-  static String routeName = "/invite_friends";
+class AboutUsScreen extends StatelessWidget {
+  static String routeName = "/about_us";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple[600],
-        title: Text('Invite Friends', style: TextStyle(color: Colors.white)),
+        title: Text('About Us', style: TextStyle(color: Colors.white)),
       ),
       body: Body(),
     );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:payani/screens/about_us/about_us_screen.dart';
 import 'package:payani/screens/invite_friends/invite_friends_screen.dart';
 import 'package:payani/screens/privacy_policy/privacy_policy_screen.dart';
-import 'package:payani/screens/review/review_screen.dart';
+import 'package:payani/screens/sign_in/sign_in_screen.dart';
 import 'package:payani/screens/update_profile/update_profile_screen.dart';
 
 import 'profile_menu.dart';
@@ -31,10 +32,10 @@ class Body extends StatelessWidget {
             },
           ),
           ProfileMenu(
-            text: "Contact us",
+            text: "About us",
             icon: "assets/icons/Settings.svg",
             press: () {
-              Navigator.pushNamed(context, ReviewScreen.routeName);
+               Navigator.push(context, MaterialPageRoute(builder: (context)=>AboutUsScreen(),),);
             },
           ),
           ProfileMenu(
@@ -47,7 +48,9 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "Log Out",
             icon: "assets/icons/Log out.svg",
-            press: () {},
+            press: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInScreen(),),);
+            },
           ),
         ],
       ),

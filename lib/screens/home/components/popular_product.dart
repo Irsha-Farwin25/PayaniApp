@@ -6,6 +6,7 @@ import 'package:payani/screens/details/details_screen.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
+
 class PopularProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

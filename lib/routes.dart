@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:payani/screens/about_us/about_us_screen.dart';
 import 'package:payani/screens/cart/cart_screen.dart';
 import 'package:payani/screens/checkin_success/checkin_success_screen.dart';
 import 'package:payani/screens/complete_profile/complete_profile_screen.dart';
@@ -44,5 +45,7 @@ final Map<String, WidgetBuilder> routes = {
   ReviewScreen.routeName: (context) => ReviewScreen(),
   HotelRoomsScreen.routeName: (context) => HotelRoomsScreen(),
   UpdateProfileScreen.routeName: (context) => UpdateProfileScreen(),
+  AboutUsScreen.routeName: (context) =>AboutUsScreen(),
+    
   //DetailPage.routeName: (context) => DetailPage(cityModel),
 };

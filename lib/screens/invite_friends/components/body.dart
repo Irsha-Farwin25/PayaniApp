@@ -1,46 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:payani/components/default_button.dart';
-import 'package:payani/screens/home/home_screen.dart';
-import 'package:payani/size_config.dart';
+import 'package:payani/components/no_account_text.dart';
+import '../../../size_config.dart';
+import 'invite_form.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Column(
-      children: [
-        SizedBox(height: SizeConfig.screenHeight * 0.1),
-        // Image.asset(
-        //   "assets/images/success.png",
-        //   height: SizeConfig.screenHeight * 0.49, //40%
-        // ),
-        SizedBox(height: SizeConfig.screenHeight * 0.01),
-        Text(
-          "Invite Friends Now",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: getProportionateScreenWidth(30),
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+      child: SizedBox(
+        width: double.infinity,
+        child: Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: SizeConfig.screenHeight * 0.04),
+                Text(
+                  "Invite Friends",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: getProportionateScreenWidth(28),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  "Invite your Friends to get amazing experience from Payani .",
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: SizeConfig.screenHeight * 0.08),
+                InviteForm(),
+                SizedBox(height: SizeConfig.screenHeight * 0.05),
+          
+              ],
+            ),
           ),
         ),
-        //Spacer(),
-        SizedBox(height: SizeConfig.screenHeight * 0.001),
-        Image.asset(
-          "assets/images/success.png",
-          height: SizeConfig.screenHeight * 0.49, //40%
-        ),
-        SizedBox(
-          width: SizeConfig.screenWidth * 0.9,
-          child: DefaultButton(
-            text: "Invite Your Friends",
-            press: () {
-              Navigator.pushNamed(context, HomeScreen.routeName);
-            },
-          ),
-        ),
-        Spacer(),
-      ],
-    ));
+      ),
+    );
   }
 }

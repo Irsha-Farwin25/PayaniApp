@@ -18,9 +18,9 @@ class Body extends StatelessWidget {
         "It is important to understand why Payani request to collect and use your location data, we explain this in our Privacy Policy .we will never sell your information to third parties",
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: getProportionateScreenWidth(30),
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
+          fontSize: getProportionateScreenWidth(28),
+          fontWeight: FontWeight.normal,
+          color: Colors.red,
         ),
       ),
       //Spacer(),
