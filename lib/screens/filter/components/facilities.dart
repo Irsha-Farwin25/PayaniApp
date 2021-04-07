@@ -46,7 +46,7 @@ class _FacilitiesState extends State<Facilities> {
             ),
              
             LabeledCheckbox(
-              label: 'Free lunch',
+              label: 'Parking',
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               value: _isSelected2,
               onChanged: (bool newValue) {
@@ -66,7 +66,7 @@ class _FacilitiesState extends State<Facilities> {
               },
             ),
             LabeledCheckbox(
-              label: 'Couple Friendly',
+              label: 'Theatre',
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               value: _isSelected1,
               onChanged: (bool newValue) {
@@ -76,7 +76,7 @@ class _FacilitiesState extends State<Facilities> {
               },
             ),
             LabeledCheckbox(
-              label: 'Budget Friendly',
+              label: 'Park',
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               value: _isSelected4,
               onChanged: (bool newValue) {

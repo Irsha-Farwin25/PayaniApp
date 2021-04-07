@@ -1,11 +1,11 @@
-import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:payani/components/custom_surfix_icon.dart';
 import 'package:payani/components/default_button.dart';
 import 'package:payani/components/form_error.dart';
-import 'package:payani/screens/complete_profile/complete_profile_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:payani/screens/home/home_screen.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -18,16 +18,24 @@ class _SignUpFormState extends State<SignUpForm> {
 //web services for signup page
   TextEditingController ema =TextEditingController();
   TextEditingController pas =TextEditingController();
+  TextEditingController cpas =TextEditingController();
+  TextEditingController nam =TextEditingController();
+  TextEditingController cno =TextEditingController();
 
   Future register() async{
     var url="http://payani.namsiu.org/customer/register_user";
     var response = await http.post(Uri.parse(url),body:{
       "email" : ema.text,
       "password": pas.text,
+      "Confirm_password":cpas.text,
+      "name":nam.text,
+      "contact_no":cno.text,
+      
     });
 
-    var data = json.decode(response.body);
-    if(data=="Error"){
+    var data = response.body;
+    print(data);
+    if(data=="pass"){
        Fluttertoast.showToast(
         msg: "Registration Successful",
         toastLength: Toast.LENGTH_SHORT,
@@ -37,6 +45,8 @@ class _SignUpFormState extends State<SignUpForm> {
         textColor: Colors.white,
         fontSize: 16.0
     );
+     Navigator.pushNamed(context, HomeScreen.routeName);
+
     }else{
       Fluttertoast.showToast(
         msg: "Already exist",
@@ -56,6 +66,8 @@ class _SignUpFormState extends State<SignUpForm> {
   String email;
   String password;
   String conform_password;
+  String phoneNumber;
+  String name;
   bool remember = false;
   final List<String> errors = [];
 
@@ -79,6 +91,10 @@ class _SignUpFormState extends State<SignUpForm> {
       key: _formKey,
       child: Column(
         children: [
+          buildNameFormField(),
+          SizedBox(height: getProportionateScreenHeight(30)),
+          buildPhoneNumberFormField(),
+          SizedBox(height: getProportionateScreenHeight(30)),
           buildEmailFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPasswordFormField(),
@@ -90,11 +106,11 @@ class _SignUpFormState extends State<SignUpForm> {
             text: "Continue",
             press: () {
               //data will be checked
-              register();
+             
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
-                Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+                register();
               }
             },
           ),
@@ -125,7 +141,7 @@ class _SignUpFormState extends State<SignUpForm> {
         }
         return null;
       },
-      controller: pas,
+      controller: cpas,
       decoration: InputDecoration(
         labelText: "Confirm Password",
         hintText: "Re-enter your password",
@@ -170,6 +186,62 @@ class _SignUpFormState extends State<SignUpForm> {
       ),
     );
   }
+   TextFormField buildPhoneNumberFormField() {
+    return TextFormField(
+      keyboardType: TextInputType.phone,
+      onSaved: (newValue) => phoneNumber = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPhoneNumberNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kPhoneNumberNullError);
+          return "";
+        }
+        return null;
+      },
+      controller: cno,
+      decoration: InputDecoration(
+        labelText: "Phone Number",
+        hintText: "Enter your phone number",
+        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Phone.svg"),
+      ),
+    );
+  }
+ TextFormField buildNameFormField() {
+    return TextFormField(
+      onSaved: (newValue) => name = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kNamelNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kNamelNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: " Name",
+        hintText: "Enter your name",
+        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg"),
+      ),
+    );
+  }
+
+
 
   TextFormField buildEmailFormField() {
     return TextFormField(
@@ -204,4 +276,5 @@ class _SignUpFormState extends State<SignUpForm> {
       ),
     );
   }
+
 }

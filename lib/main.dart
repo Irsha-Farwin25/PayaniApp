@@ -4,7 +4,6 @@ import 'package:payani/screens/splash/splash_screen.dart';
 import 'package:payani/theme.dart';
 
 void main() => runApp(MyApp());
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override

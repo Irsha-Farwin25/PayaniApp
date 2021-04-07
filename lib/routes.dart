@@ -17,6 +17,7 @@ import 'package:payani/screens/reservation_success/reservation_success_screen.da
 import 'package:payani/screens/review/review_screen.dart';
 import 'package:payani/screens/sign_in/sign_in_screen.dart';
 import 'package:payani/screens/splash/splash_screen.dart';
+import 'package:payani/screens/update_profile/update_profile_screen.dart';
 import 'screens/hotel_rooms/hotel_rooms_screen.dart';
 import 'screens/sign_up/sign_up_screen.dart';
 
@@ -42,5 +43,6 @@ final Map<String, WidgetBuilder> routes = {
   InviteFriendsScreen.routeName: (context) => InviteFriendsScreen(),
   ReviewScreen.routeName: (context) => ReviewScreen(),
   HotelRoomsScreen.routeName: (context) => HotelRoomsScreen(),
+  UpdateProfileScreen.routeName: (context) => UpdateProfileScreen(),
   //DetailPage.routeName: (context) => DetailPage(cityModel),
 };

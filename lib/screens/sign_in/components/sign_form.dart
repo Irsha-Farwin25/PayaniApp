@@ -3,9 +3,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:payani/components/custom_surfix_icon.dart';
 import 'package:payani/components/form_error.dart';
 import 'package:payani/screens/forgot_password/forgot_password_screen.dart';
-import 'package:payani/screens/login_success/login_success_screen.dart';
+import 'package:payani/screens/home/home_screen.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -28,8 +28,9 @@ class _SignFormState extends State<SignForm> {
       "password": pas.text,
     });
 
-    var data = json.decode(response.body);
-    if(data=="Success"){
+   var data = response.body;
+    print(data);
+    if(data=="success"){
         Fluttertoast.showToast(
         msg: "Login Successful",
         toastLength: Toast.LENGTH_SHORT,
@@ -39,7 +40,7 @@ class _SignFormState extends State<SignForm> {
         textColor: Colors.white,
         fontSize: 16.0
     );
-    // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+    Navigator.pushNamed(context, HomeScreen.routeName);
     }else{
       Fluttertoast.showToast(
         msg: "Username & Password Incorrect!",
@@ -116,7 +117,7 @@ class _SignFormState extends State<SignForm> {
                 // if all are valid then go to success screen
                 login(); 
                 
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+              
               
               }
             },

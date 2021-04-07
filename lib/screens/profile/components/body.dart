@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:payani/screens/invite_friends/invite_friends_screen.dart';
 import 'package:payani/screens/privacy_policy/privacy_policy_screen.dart';
 import 'package:payani/screens/review/review_screen.dart';
+import 'package:payani/screens/update_profile/update_profile_screen.dart';
 
 import 'profile_menu.dart';
 import 'profile_pic.dart';
@@ -18,7 +19,9 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "My Account",
             icon: "assets/icons/User Icon.svg",
-            press: () => {},
+            press: () => {
+               Navigator.pushNamed(context, UpdateProfileScreen.routeName)
+            },
           ),
           ProfileMenu(
             text: "Privacy Policy",
@@ -28,7 +31,7 @@ class Body extends StatelessWidget {
             },
           ),
           ProfileMenu(
-            text: "Settings",
+            text: "Contact us",
             icon: "assets/icons/Settings.svg",
             press: () {
               Navigator.pushNamed(context, ReviewScreen.routeName);
