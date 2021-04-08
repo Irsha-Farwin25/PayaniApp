@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:payani/components/custom_surfix_icon.dart';
 import 'package:payani/components/form_error.dart';
 import 'package:payani/screens/reservation_success/reservation_success_screen.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -15,21 +16,62 @@ class Body extends StatefulWidget {
 class _ReservationFormState extends State<Body> {
 
   TextEditingController ema =TextEditingController();
-  TextEditingController fna =TextEditingController();
+  TextEditingController nam =TextEditingController();
   TextEditingController phn =TextEditingController();
   TextEditingController addg =TextEditingController();
   TextEditingController cki =TextEditingController();
   TextEditingController cko =TextEditingController();
 
+Future rervation() async{
+    var url="http://payani.namsiu.org/reservation/addreservationdata";
+    var response = await http.post(Uri.parse(url),body:{
+      "email" : ema.text,
+      "check_in": cki.text,
+      "no_of_guests":addg.text,
+      "name":nam.text,
+      "contact_no":phn.text,
+      "check_out":cko.text,
+      
+    });
 
+    var data = response.body;
+    print(data);
+    if(data=="pass"){
+       Fluttertoast.showToast(
+        msg: "Reservation Successful",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green[700],
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+     Navigator.pushNamed(context, ReservationSuccessScreen.routeName);
+
+    }else{
+      Fluttertoast.showToast(
+        msg: "something went wrong",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+
+    }
+  }
 
   
   
   final _formKey = GlobalKey<FormState>();
   String email;
-  String firstName;
+  String name;
   String phoneNumber;
   String addGuest;
+  String checkedIn;
+  String checkedOut;
+  
 
   bool remember = false;
   final List<String> errors = [];
@@ -90,8 +132,9 @@ class _ReservationFormState extends State<Body> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
-                Navigator.pushNamed(
-                    context, ReservationSuccessScreen.routeName);
+                // Navigator.pushNamed(
+                //     context, ReservationSuccessScreen.routeName);
+                rervation();
               }
             },
           ),
@@ -118,6 +161,7 @@ class _ReservationFormState extends State<Body> {
         }
         return null;
       },
+      controller: phn,
       decoration: InputDecoration(
         labelText: "Phone Number",
         hintText: "Enter your phone number",
@@ -151,6 +195,7 @@ class _ReservationFormState extends State<Body> {
         }
         return null;
       },
+      controller: ema,
       decoration: InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",
@@ -164,7 +209,7 @@ class _ReservationFormState extends State<Body> {
 
   TextFormField buildFirstNameFormField() {
     return TextFormField(
-      onSaved: (newValue) => firstName = newValue,
+      onSaved: (newValue) => name = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kNamelNullError);
@@ -178,9 +223,10 @@ class _ReservationFormState extends State<Body> {
         }
         return null;
       },
+      controller: nam,
       decoration: InputDecoration(
-        labelText: "Full Name",
-        hintText: "Enter your full name",
+        labelText: "Name",
+        hintText: "Enter your name",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -205,6 +251,7 @@ class _ReservationFormState extends State<Body> {
         }
         return null;
       },
+      controller: addg,
       decoration: InputDecoration(
         labelText: "Add Guests",
         hintText: "No Of Guests",
@@ -219,7 +266,7 @@ class _ReservationFormState extends State<Body> {
   TextFormField buildcheckinFormField() {
     return TextFormField(
       keyboardType: TextInputType.phone,
-      onSaved: (newValue) => phoneNumber = newValue,
+      onSaved: (newValue) => checkedIn = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPhoneNumberNullError);
@@ -233,6 +280,7 @@ class _ReservationFormState extends State<Body> {
         }
         return null;
       },
+      controller: cki,
       decoration: InputDecoration(
         labelText: "check in",
         hintText: "yyyy/mm/dd",
@@ -247,7 +295,7 @@ class _ReservationFormState extends State<Body> {
   TextFormField buildcheckoutFormField() {
     return TextFormField(
       keyboardType: TextInputType.phone,
-      onSaved: (newValue) => phoneNumber = newValue,
+      onSaved: (newValue) => checkedOut = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPhoneNumberNullError);
@@ -261,6 +309,7 @@ class _ReservationFormState extends State<Body> {
         }
         return null;
       },
+      controller: cko,
       decoration: InputDecoration(
         labelText: "check out",
         hintText: "yyyy/mm/dd",
@@ -272,3 +321,5 @@ class _ReservationFormState extends State<Body> {
     );
   }
 }
+
+

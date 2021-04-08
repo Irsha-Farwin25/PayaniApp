@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:payani/screens/review/components/TextBOx.dart';
 import 'package:payani/screens/review/components/rating.dart';
 import '../../../size_config.dart';
-import 'check_out_review.dart';
 
 class Body extends StatelessWidget {
   @override

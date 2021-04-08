@@ -9,10 +9,6 @@ class Body extends StatelessWidget {
     return SafeArea(
         child: Column(children: [
       SizedBox(height: SizeConfig.screenHeight * 0.1),
-      // Image.asset(
-      //   "assets/images/success.png",
-      //   height: SizeConfig.screenHeight * 0.49, //40%
-      // ),
       SizedBox(height: SizeConfig.screenHeight * 0.01),
       Text(
         "It is important to understand why Payani request to collect and use your location data, we explain this in our Privacy Policy .we will never sell your information to third parties",
