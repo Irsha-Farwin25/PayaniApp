@@ -22,7 +22,9 @@ class _SignFormState extends State<SignForm> {
   TextEditingController pas =TextEditingController();
 
   Future login()async{
-    var url="http://payani.namsiu.org/customer/login_user";
+
+    print('Inside login...');
+    var url="http://payani.namsiu.org/customer/login_user/";
     var response = await http.post(Uri.parse(url),body:{
       "email" : ema.text,
       "password": pas.text,

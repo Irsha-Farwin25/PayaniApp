@@ -7,6 +7,7 @@ import 'package:payani/screens/details/details_screen.dart';
 import 'package:payani/screens/filter/filter_screen.dart';
 import 'package:payani/screens/forgot_password/forgot_password_screen.dart';
 import 'package:payani/screens/home/home_screen.dart';
+import 'package:payani/screens/hotel_list/hotel_list_screen.dart';
 import 'package:payani/screens/invite_friends/invite_friends_screen.dart';
 //import 'package:payani/screens/hotel_details/hdetails_screen.dart';
 import 'package:payani/screens/login_success/login_success_screen.dart';
@@ -46,6 +47,6 @@ final Map<String, WidgetBuilder> routes = {
   HotelRoomsScreen.routeName: (context) => HotelRoomsScreen(),
   UpdateProfileScreen.routeName: (context) => UpdateProfileScreen(),
   AboutUsScreen.routeName: (context) =>AboutUsScreen(),
-    
+  UserFilterDemo.routeName: (context) =>UserFilterDemo(),  
   //DetailPage.routeName: (context) => DetailPage(cityModel),
 };

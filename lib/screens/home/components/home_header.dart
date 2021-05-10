@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:payani/screens/filter/filter_screen.dart';
+import 'package:payani/screens/hotel_list/hotel_list_screen.dart';
 
 import '../../../size_config.dart';
-import 'icon_btn_with_counter.dart';import 'search_field.dart';
+import 'icon_btn_with_counter.dart';
+import 'search_field.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
@@ -25,10 +27,15 @@ class HomeHeader extends StatelessWidget {
           IconBtnWithCounter(
             svgSrc: "assets/icons/Bell.svg",
             numOfitem: 3,
-            press: () {},
+            press: () => Navigator.pushNamed(context, UserFilterDemo.routeName),
           ),
         ],
       ),
     );
   }
 }
+
+
+
+
+
